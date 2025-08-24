@@ -20,7 +20,32 @@ Spring Security’s `CompromisedPasswordChecker`, integrated with **Have I Been 
 spring.datasource.username=<your-username>
 spring.datasource.password=<your-password>
 
+**
 🚀 Running the Service
-
+**
 mvn clean install
 mvn spring-boot:run
+
+**Service runs at:**
+
+POST http://localhost:8080/api/v1/users/register
+
+**📬 Example API Responses
+
+✅ Successful Registration
+**
+{
+  "id": 1,
+  "name": "John Doe",
+  "email": "john@example.com",
+  "role": "USER"
+}
+
+
+**❌ Failed Registration (Compromised Password)
+**
+{
+  "error": "Password security issue",
+  "message": "Password has been exposed in data breaches"
+}
+
