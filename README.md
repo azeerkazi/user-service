@@ -11,40 +11,45 @@ Spring Security’s `CompromisedPasswordChecker`, integrated with **Have I Been 
 - ✅ Supports both **local DB setup** and **Dockerized DB**  
 
 
-## ⚙️ Setup Instructions
+⚙️ Setup Instructions
+1. Clone the Repository
+bash
+git clone https://github.com/your-username/user-service.git
+cd user-service
+2. Local MySQL Database Setup
+Create a database named:
 
-### 1️⃣ Local Database Setup
-- Create a database named **`taskFlowAI`** in your local MySQL.  
-- Update the following properties inside `application.properties` with your own **username** and **password**:  
+sql
+CREATE DATABASE taskFlowAI;
+Update your application.properties with your actual DB credentials:
 
+text
+spring.datasource.url=jdbc:mysql://localhost:3306/taskFlowAI
 spring.datasource.username=<your-username>
 spring.datasource.password=<your-password>
-
-###🚀 **Running the Service**
-
+3. Running the Service
+bash
 mvn clean install
 mvn spring-boot:run
+📌 Service will start at:
 
-**Service runs at:**
-
+text
+http://localhost:8080
+📡 API Endpoints
+Register a User
 POST http://localhost:8080/api/v1/users/register
 
-###📬 **Example API Responses**
-
-✅ **Successful Registration**
-
+✅ Success Response
+json
 {
   "id": 1,
   "name": "John Doe",
   "email": "john@example.com",
   "role": "USER"
 }
-
-
-❌ **Failed Registration (Compromised Password)**
-
+❌ Failed Response (Compromised Password)
+json
 {
   "error": "Password security issue",
   "message": "Password has been exposed in data breaches"
 }
-
